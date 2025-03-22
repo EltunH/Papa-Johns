@@ -36,7 +36,7 @@ function show(item) {
                <p class="mt-4"><b>${kod}</b> ${item.composition || ''}</p>
                <p class="font-bold my-2 text-[18px]">Qiyməti: ${(count * (DETAILDATA.sizeValue || item.price)).toFixed(2)}₼</p>
                <div id="pizzaSelect">
-                   <div class="flex rounded py-2 w-[60%]">
+                   <div class="flex rounded-md overflow-hidden my-2 w-[60%]">
                        <button onclick="changeThin(true, 'Ənənəvi')" class="${flag ? 'bg-green-700' : 'bg-gray-200'} w-1/2 text-center ${flag ? 'text-white' : 'text-green-700'} px-2 py-1">
                            Ənənəvi
                        </button>
@@ -45,14 +45,14 @@ function show(item) {
                        </button>
                    </div>
                    <div class="font-semibold w-[60%]">
-                       <select id="sizeSelect" onchange="changeSize(this)" class="w-full text-center bg-red-700 outline-none my-5 px-3 py-1 text-[15px] text-white"></select>
+                       <select id="sizeSelect" onchange="changeSize(this)" class="w-full text-center rounded-md bg-red-700 outline-none my-5 px-3 py-1 text-[15px] text-white"></select>
                    </div>
                </div>
                <div class="py-2">
                    <div class="flex items-center sm:text-[20px] text-white py-2">
-                       <button onclick="changeCount(-1)" class="w-[50px] bg-gray-400 font-black">-</button>
+                       <button onclick="changeCount(-1)" class="w-[38px] bg-[#b91c1c] rounded font-black">-</button>
                        <span class="w-[50px] flex justify-center text-black font-semibold">${count}</span>
-                       <button onclick="changeCount(1)" class="w-[50px] bg-green-600 font-black">+</button>
+                       <button onclick="changeCount(1)" class="w-[38px] bg-green-600 rounded font-black">+</button>
                    </div>
                    <button onclick="addBasket()" class="bg-green-700 text-white w-[200px] p-2 my-5 rounded-md">Səbətə at</button>
                </div>

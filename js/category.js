@@ -17,8 +17,8 @@ function showCategories() {
     DATA.map(item => {
         cards.innerHTML += `<a href="details.htm?category=${item.category}&id=${item.id}" class="w-full overflow-hidden sm:w-[48%] lg:w-[30%] xl:w-[23%] hover:shadow-[0_4px_12px_rgba(0,0,0,0.12)]  h-[400px]  my-5 shadow-md rounded">
                                 <img class="w-full h-[55%] object-cover" src="${item.img}" alt="pizza">
-                                <div class="flex justify-between items-center mt-4 mb-2">
-                                    <p class="font-bold w-[70%] text-[18px] mr-2">${item.title}</p>
+                                <div class="flex justify-between items-center px-2 mt-4 mb-2">
+                                    <p class="font-bold w-[60%] text-[18px] mr-2">${item.title}</p>
                                     <button class="text-[14px] w-[30%] bg-green-700 text-white uppercase font-bold p-[8px] rounded-md">Bunu seç</button>
                                 </div>
                                 <p class="px-2">${item.composition}</p>
