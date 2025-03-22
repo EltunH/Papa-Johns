@@ -17,12 +17,13 @@ fetch(`https://papajson.vercel.app/${search}/${searchId}`)
     .then(res => res.json())
     .then(info => {
         DETAILDATA = info
+        DETAILDATA.productCount = 1
         loading = false
         showDetails()
         if (search == 'pizza') {
-            selectVal = info.variations[0].price
+            DETAILDATA.sizeValue = info.variations[0].price
             post = info.variations[0].type
-            changePizza(post, selectVal)
+            changePizza(post, DETAILDATA.sizeValue)
         }
     })
 
@@ -33,7 +34,7 @@ function show(item) {
             <div class="w-full sm:w-1/2 xs:mr-5">
                <h4 class="font-bold text-[22px]">${item.title}</h4>
                <p class="mt-4"><b>${kod}</b> ${item.composition || ''}</p>
-               <p class="font-bold my-2 text-[18px]">Qiyməti: ${(count * (selectVal || item.price)).toFixed(2)}₼</p>
+               <p class="font-bold my-2 text-[18px]">Qiyməti: ${(count * (DETAILDATA.sizeValue || item.price)).toFixed(2)}₼</p>
                <div id="pizzaSelect">
                    <div class="flex rounded py-2 w-[60%]">
                        <button onclick="changeThin(true, 'Ənənəvi')" class="${flag ? 'bg-green-700' : 'bg-gray-200'} w-1/2 text-center ${flag ? 'text-white' : 'text-green-700'} px-2 py-1">
@@ -89,13 +90,13 @@ function changeCount(x) {
     count += x
     if (count < 1) count = 1
     show(DETAILDATA)
-    changePizza(post, selectVal)
+    changePizza(post, DETAILDATA.sizeValue)
 }
 
 function changeThin(position, type) {
     flag = position
     show(DETAILDATA)
-    changePizza(type, selectVal)
+    changePizza(type, DETAILDATA.sizeValue)
 }
 
 function changePizza(type, val) {
@@ -116,7 +117,7 @@ function changePizza(type, val) {
 
 function changeSize() {
     const sizeSelect = document.getElementById('sizeSelect')
-    selectVal = sizeSelect.value
+    DETAILDATA.sizeValue = sizeSelect.value
     show(DETAILDATA)
-    changePizza(post, selectVal)
+    changePizza(post, DETAILDATA.sizeValue)
 }

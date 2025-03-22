@@ -8,13 +8,12 @@ const favoruit = document.getElementById('favoruit')
 
 
 let basket = JSON.parse(localStorage.getItem('basket')) || []
-let selectVal = ''
 
 function addBasket() {
     let yoxla = basket.find(item => item.id == DETAILDATA.id)
     if (yoxla == undefined) {
+        DETAILDATA.productCount = count
         basket.push(DETAILDATA)
-        basket.filter(item => item.productCount ? '' : item.productCount = count)
     } else {
         basket.map(item => {
             if (item.id == DETAILDATA.id) item.productCount += count
@@ -32,7 +31,7 @@ function showBasket() {
     redCount1.innerHTML = basket.length
     basketCount.innerHTML = basket.length
     basket.map((item, i) => {
-        qiymet = (item.productCount * item.price).toFixed(1)
+        qiymet = (item.productCount * (item.sizeValue || item.price)).toFixed(1)
         favoruit.innerHTML += `
                     <div class="flex flex-col sm:flex-row justify-between items-center py-3 border border-slate-400 mt-2">
                         <div class="w-full sm:w-1/2 flex gap-2 items-center">
@@ -41,13 +40,13 @@ function showBasket() {
                         </div>
                         <div class="w-full sm:w-1/2 justify-end flex items-center gap-3 px-2">
                             <div class="flex items-center sm:text-[20px] text-white p-2">
-                                <button onclick="changeProductCount(-1, '${item.id}')" class="px-2 sm:px-3 pb-1 bg-gray-400 font-black">-</button>
+                                <button onclick="changeProductCount(-1, '${item.id}', ${i})" class="px-2 sm:px-3 pb-1 bg-[#b91c1c] rounded w-[38px] font-black">-</button>
                                 <span class="px-2 sm:px-3 text-black">${item.productCount}</span>
-                                <button onclick="changeProductCount(1, '${item.id}')" class="px-2 sm:px-3 pb-1 bg-green-600 font-black">+</button>
+                                <button onclick="changeProductCount(1, '${item.id}', ${i})" class="px-2 sm:px-3 pb-1 bg-green-600 rounded w-[38px] font-black">+</button>
                             </div>
                             <div class="font-bold">
                                 <span class="text-[22px]">${qiymet} ₼</span>
-                                <span onclick="deleteProduct(${i})" class="fa-solid fa-xmark text-gray-600 ml-2"></span>
+                                <span onclick="deleteProduct(${i})" class="fa-solid cursor-pointer fa-xmark text-gray-600 ml-2"></span>
                             </div>
                         </div>
                     </div>
@@ -65,11 +64,11 @@ function deleteProduct(i) {
     showBasket()
 }
 
-function changeProductCount(say, id) {
+function changeProductCount(say, id, i) {
     basket.map(item => {
-        if(item.id == id) {
+        if (item.id == id) {
             item.productCount += say
-            if(item.productCount <= 1) item.productCount = 1
+            if (item.productCount < 1) deleteProduct(i)
         }
     })
     localStorage.setItem('basket', JSON.stringify(basket))
