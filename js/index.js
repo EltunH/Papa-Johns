@@ -1,11 +1,11 @@
 const categoryMenu = document.getElementById('categoryMenu')
 const modal = document.getElementById('modal')
 
-fetch("https://papajson.vercel.app/category")
+fetch("http://localhost:3000/category")
     .then(res => res.json())
     .then(info => {
         info.map(item => {
-            let kod = item.id === 222 ? '/index.htm' : `/pages/category.htm?category=${item.slug}`
+            let kod = item.id === "222" ? '/index.htm' : `/pages/category.htm?category=${item.slug}`
             categoryMenu.innerHTML += `<li><a href="${kod}">${item.slug}</a></li>`
         })
         showBasket()

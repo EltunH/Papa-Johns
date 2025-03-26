@@ -13,7 +13,7 @@ let flag = true
 let post = ''
 
 
-fetch(`https://papajson.vercel.app/${search}/${searchId}`)
+fetch(`http://localhost:3000/${search}/${searchId}`)
     .then(res => res.json())
     .then(info => {
         DETAILDATA = info

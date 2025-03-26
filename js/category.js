@@ -4,7 +4,7 @@ let DATA
 let axtar = new URLSearchParams(location.search).get('category')
 let load = true
 
-fetch(`https://papajson.vercel.app/${axtar}`)
+fetch(`http://localhost:3000/${axtar}`)
     .then(res => res.json())
     .then(info => {
         DATA = info
