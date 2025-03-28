@@ -16,7 +16,7 @@ function addBasket() {
         basket.push(DETAILDATA)
     } else {
         basket.map(item => {
-            if(item.category == 'pizza') item.sizeValue = DETAILDATA.sizeValue
+            if(item.category == 'pizza' && item.id == DETAILDATA.id) item.sizeValue = DETAILDATA.sizeValue
             if (item.id == DETAILDATA.id) item.productCount += count
         })
     }
