@@ -20,7 +20,7 @@ fetch(`http://localhost:3000/${search}/${searchId}`)
         DETAILDATA.productCount = 1
         loading = false
         showDetails()
-        if (search == 'pizza') {
+        if (search == 'pizza' && info.variations.length > 0) {
             DETAILDATA.sizeValue = info.variations[0].price
             post = info.variations[0].type
             changePizza(post, DETAILDATA.sizeValue)
