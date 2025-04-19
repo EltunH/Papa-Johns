@@ -1,7 +1,7 @@
 const categoryMenu = document.getElementById('categoryMenu')
 const modal = document.getElementById('modal')
 
-fetch("https://papajson.vercel.app/category")
+fetch("https://papajohns-data.vercel.app/category")
     .then(res => res.json())
     .then(info => {
         info.map(item => {
